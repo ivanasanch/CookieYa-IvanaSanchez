@@ -1,11 +1,7 @@
 import * as React from 'react';
- import './NavBar.css';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import Button from '@mui/material/Button';
-
+import './NavBar.css';
+import {AppBar,Toolbar,Typography,Button} from '@mui/material';
+import CartWidget from './CartWidget';
 const NavBar = () => {
   return (
     <AppBar position="static" className='header-primary'>
@@ -23,9 +19,7 @@ const NavBar = () => {
                 <Button>
                     <Typography variant="button" component="div" className='navbar__btn'>Contacto</Typography>
                 </Button>
-                <Button color="inherit" className="carrito__btn" aria-label="add to shopping cart">
-                    <ShoppingCartOutlinedIcon />
-                </Button>
+                <CartWidget />
             </div>
         </Toolbar>
     </AppBar>
