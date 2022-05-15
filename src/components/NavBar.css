@@ -1,0 +1,36 @@
+.NavBarList {
+    float:left;
+    width: 100%;
+    border-bottom: #ccc;
+    display: flex;
+}
+.NavBarLogo {
+    width: 150px;
+}
+.NavBarLogo img {
+    width: 80%;
+}
+.header-primary {
+    background: #f19444 !important;
+    box-shadow: none !important;
+    border-bottom: 0px;
+}
+.navbar__btn {
+    font-family: 'Roboto', sans-serif;
+    text-transform: none;
+    font-weight: 400;
+    font-size: 16px;
+    color: black !important;
+}
+.navbar__btn:hover {
+    font-weight: 600;
+}
+
+.navbar__btn:hover:before {
+    width: 85%;
+}
+.carrito__btn {
+    display: block !important;
+    position: absolute !important;
+    right: 0 !important;
+}
