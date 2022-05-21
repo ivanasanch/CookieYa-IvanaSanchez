@@ -1,0 +1,11 @@
+.counter-div {
+        display: flex;
+        justify-content: center;
+}
+.card-list-img {
+        border-radius: 0.5em
+}
+
+.counter-div>Button:hover, .agregarCarrito>Button:hover, Button:hover{
+        background-color: navajowhite;
+}
