@@ -26,6 +26,7 @@
 .navbar__btn:hover:before {
     width: 85%;
 }
+
 .carrito__btn {
     display: block !important;
     position: absolute !important;

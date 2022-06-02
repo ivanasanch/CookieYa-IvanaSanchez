@@ -6,7 +6,7 @@ const ItemDetail = ({props}) => {
             <Typography variant="h2" component="div">Detalle</Typography>
             <Grid container direction="row" justifyContent="center" alignItems="center">
                 <Grid item xs={5}>
-                    <img src={props.img} alt={props.title} className="card-list-img" width={500}/>
+                    <img src={`/${props.img}`} alt={props.title} className="card-list-img" width={500}/>
                 </Grid>
                 <Grid item xs={3}>
                     <Typography variant="h4">{props.title}</Typography>

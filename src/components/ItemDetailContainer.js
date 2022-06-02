@@ -1,24 +1,30 @@
 import ItemDetail from './ItemDetail.js';
 import { useState, useEffect } from 'react';
-import { detalle } from './cookiesMock.js';
+import { useParams, useNavigate } from "react-router-dom"
+import galletitas from './cookiesMock.js';
+
 
 const ItemDetailContainer = () => {
-    const [detail, setDetail] = useState([])
-    const getItemDetail = () => {
-        return new Promise( (resolve, reject) => {
-            setTimeout(() => {
-                resolve(detalle)
-            }, 2000)
-        })
-    }
+    const { id } = useParams()
+    const navigate = useNavigate()
+    const [cookies , setCookies] = useState({})
+
     useEffect(() => {
-        getItemDetail().then((res) => {
-            console.log(res)
-            setDetail(res)
-        })
+        if(productFilter === undefined){
+            navigate('/')
+        }else {
+            setCookies(productFilter)
+
+        }
+    }, [id])
+    const productFilter = galletitas.find( (cookie) => {
+        return cookie.id === Number(id)
     })
+
     return(
-      <ItemDetail props={detail}/>
-        )
+        <>
+        <ItemDetail props={cookies}/>
+        </>
+    )
 }
 export default ItemDetailContainer;
