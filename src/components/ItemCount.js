@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Typography, Button } from "@mui/material";
 import RemoveIcon from '@mui/icons-material/Remove';
 import Add from '@mui/icons-material/Add';
-const ItemCount = ({stock}) => {
+const ItemCount = ({stock, id, setShowButton}) => {
 const [count, setCount] = useState(1);
 const onAdd = () => {
     if(count < stock) {      
@@ -15,6 +15,9 @@ const onRemove = () => {
         setCount(count - 1)
     }
  }
+ const addProduct = () => {
+    setShowButton(true)
+ }
  return (
      <>
     <div className='counter-div'>
@@ -23,7 +26,7 @@ const onRemove = () => {
     <Button variant="text" onClick={onAdd}><Add sx={{ color: "#f19444"}}/></Button>
   </div>
   <div className='agregarCarrito'>
-    <Button sx={{ color: "#f19444"}}><p>Agregar al carrito</p></Button>
+    <Button sx={{ color: "#f19444"}} onClick={addProduct}><p>Agregar al carrito</p></Button>
   </div>  
   </> 
  )

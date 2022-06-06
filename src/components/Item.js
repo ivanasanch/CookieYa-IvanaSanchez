@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Typography, Card, CardContent, CardActionArea, CardMedia} from "@mui/material";
 import '../css/card.css';
-import ItemCount from './ItemCount.js';
 import { Link } from "react-router-dom";
 const Item = ({ img, title, text, price, stock, id }) => {
   return (
@@ -19,7 +18,6 @@ const Item = ({ img, title, text, price, stock, id }) => {
         </CardContent>
       </CardActionArea>
       </Link>
-      <ItemCount stock={stock}/>
     </Card>
     </div>
   );

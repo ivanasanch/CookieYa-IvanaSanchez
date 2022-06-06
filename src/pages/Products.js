@@ -16,14 +16,12 @@ const Products =() =>{
     const filterByCategory = (array) => {
         return array.map( (item) => {
             if(item.category === category) {
-                return setCookies(cookies => [...cookies, item])
+                return setCookies(cookies => [...cookies,item])
             }
         })
     }
-{
     return (
         <ItemList data={cookies}/>
     )
-}
 }
 export default Products;
