@@ -38,7 +38,7 @@ const NavBar = () => {
                             }}
                         >
                             {categories.map( (cat) => {
-                                return <MenuItem onClick={handleClose}><Link to={`/productos/${cat}`} style={{ textDecoration: 'none' }}>{cat}</Link></MenuItem>
+                                return <MenuItem onClick={handleClose} key={cat}><Link to={`/productos/${cat}`} style={{ textDecoration: 'none', color:"#f19444", textTransform:"uppercase" }}>{cat}</Link></MenuItem>
                             })}
                         </Menu>
                 <Button>

@@ -1,15 +1,20 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Typography, Button } from "@mui/material";
 import RemoveIcon from '@mui/icons-material/Remove';
 import Add from '@mui/icons-material/Add';
-const ItemCount = ({stock, id, setShowButton}) => {
+import { CartContext } from '../context/cartContext';
+
+const ItemCount = ({props, setShowButton}) => {
 const [count, setCount] = useState(1);
+const {addProducttoCart} = useContext(CartContext)
+
 const onAdd = () => {
-    if(count < stock) {      
+    if(count < props.stock) {      
         setCount(count + 1)
     }
 } 
+const data = {...props, count}
 const onRemove = () => {
     if(count>0){
         setCount(count - 1)
@@ -17,6 +22,7 @@ const onRemove = () => {
  }
  const addProduct = () => {
     setShowButton(true)
+    addProducttoCart(data)
  }
  return (
      <>

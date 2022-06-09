@@ -12,11 +12,11 @@ const Products =() =>{
         getCookies().then( (response) => {
             filterByCategory(response)
         })
-    }, [category])
+    },[])
     const filterByCategory = (array) => {
         return array.map( (item) => {
             if(item.category === category) {
-                return setCookies(cookies => [...cookies,item])
+                return setCookies(x => [...x,item])
             }
         })
     }

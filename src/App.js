@@ -8,20 +8,24 @@ import Detail from './pages/Detail';
 import Contact from './pages/Contact';
 import ErrorPage from './pages/404';
 import Cart from './pages/Cart';
+import CartProvider from './context/cartContext';
+
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <NavBar/>
-        <Routes>
-          <Route path='/productos/:category' element={<Products/>}/>
-          <Route path='/producto/:id' element={<Detail/>}/>
-          <Route path='/contacto' element={<Contact />}/>
-          <Route path='/cart' element={<Cart />}/>
-          <Route path='/' element={<Home/>}/>
-          <Route path='*' element={<ErrorPage />}/>  
-        </Routes>
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <NavBar/>
+          <Routes>
+            <Route path='/productos/:category' element={<Products/>}/>
+            <Route path='/producto/:id' element={<Detail/>}/>
+            <Route path='/contacto' element={<Contact />}/>
+            <Route path='/cart' element={<Cart />}/>
+            <Route path='/' element={<Home/>}/>
+            <Route path='*' element={<ErrorPage />}/>  
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
     </div>
   );
 }

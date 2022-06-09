@@ -45,14 +45,4 @@ const galletitas = [
       category:'salados'
     }
   ];
-  const detalle = 
-    {
-      title : 'Rocklets',
-      price : 240,
-      text : 'Para todos aquellos fanáticos del chocolate, viene nuestra super Rocklet pronta para ser parte de tu vida.',
-      img : 'img/rocklets.jpg',
-      stock: 10,
-      id:3
-    }
   export default galletitas;
-  export {detalle};

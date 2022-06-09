@@ -17,7 +17,7 @@ const ItemDetail = ({props}) => {
                     <Typography variant="h4">${props.price}</Typography>
                     <Typography variant="body2">{props.text}</Typography>
                     {!showButton ? 
-                    <ItemCount stock={props.stock} id={props.id} setShowButton={setShowButton}/>
+                    <ItemCount props = {props} setShowButton={setShowButton}/>
                     :
                     <Button variant='text'>
                         <Link to={'/cart'} style={{ textDecoration: 'none', color:'#f19444'}}>Terminar compra</Link>
