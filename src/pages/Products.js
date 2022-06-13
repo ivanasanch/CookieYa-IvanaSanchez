@@ -1,7 +1,7 @@
 import ItemList from '../components/ItemList.js';
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import getCookies from '../components/getCookies.js';
+import galletitas from '../components/cookiesMock.js';
 
 const Products =() =>{
     const [cookies, setCookies] = useState([])
@@ -9,14 +9,13 @@ const Products =() =>{
 
     useEffect( () => {
         setCookies([])
-        getCookies().then( (response) => {
-            filterByCategory(response)
-        })
-    },[])
-    const filterByCategory = (array) => {
+        category ? filterByCategory(galletitas, category) : setCookies(galletitas)
+    },[category])
+    
+    const filterByCategory = (array, category) => {
         return array.map( (item) => {
             if(item.category === category) {
-                return setCookies(x => [...x,item])
+                return setCookies(cookies => [...cookies, item])
             }
         })
     }
