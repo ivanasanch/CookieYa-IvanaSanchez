@@ -28,19 +28,19 @@ const Cart = () => {
       <Typography variant="h4" component="div" mt={10} style={{textAlign:"left"}}>Su carrito de compras</Typography>
       </header>
       <Grid container direction="row" className="cartTitle" key="0" style={{color: "#f19444", textTransform:"uppercase"}} mt={10}>
-              <Grid item xs={1}>
+              <Grid item xs={1} key="01">
                 <Typography variant="body2">Imagen</Typography>
               </Grid>
-              <Grid item xs={3}>
+              <Grid item xs={3} key="02">
                 <Typography variant="body2">Descripcion</Typography>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={2} key="03">
                 <Typography variant="body2">Precio Unitario</Typography>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={2} key="04">
                 <Typography variant="body2">Cantidad</Typography>
               </Grid>
-              <Grid item xs={1}>
+              <Grid item xs={1} key="05">
                 <Typography variant="body2">Quitar</Typography>
               </Grid>
             </Grid></div>

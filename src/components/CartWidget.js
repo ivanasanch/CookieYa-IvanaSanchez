@@ -54,12 +54,12 @@ const CartWidget = () => {
             )}
             {cartListItems.length > 0 && (
               <div>
-              <MenuItem onClick={() => clearCart()} key={99} style={{ color: "#f19444", textTransform: "uppercase" }}>
+              <MenuItem onClick={() => clearCart()} key="99" style={{ color: "#f19444", textTransform: "uppercase" }}>
                 <Typography variant="body2">
                   Vaciar Carrito
                 </Typography>
               </MenuItem>
-              <MenuItem><Typography variant="body2">
+              <MenuItem key="00"><Typography variant="body2">
                 <Link to={'/cart'} style={{ color: "#f19444", textTransform: "uppercase", textDecoration:"none" }}>Ver carrito</Link>
               </Typography>
               </MenuItem></div>

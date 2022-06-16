@@ -2,7 +2,7 @@ import * as React from "react";
 import { Typography, Card, CardContent, CardActionArea, CardMedia} from "@mui/material";
 import '../css/card.css';
 import { Link } from "react-router-dom";
-const Item = ({ img, title, text, price, stock, id }) => {
+const Item = ({ img, title, text, price, id }) => {
   return (
     <div className="card-container">
     <Card>

@@ -1,16 +1,18 @@
 import ItemList from '../components/ItemList';
 import { useState, useEffect } from 'react';
-import getCookies from '../components/getCookies';
+import { collection, getDocs} from 'firebase/firestore';
+import db from '../utils/firebaseConfig';
+
 const Home =() =>{
-    const [products, setProducts] = useState([])
+    const [cookies, setCookies] = useState([])
     useEffect( () => {
-        getCookies()
-        .then( (response) => {
-            setProducts(response)
+        const itemCollection=collection(db, "cookies")
+        getDocs(itemCollection).then((snapshot)=>{
+            setCookies(snapshot.docs.map((doc)=>({id:doc.id, ...doc.data()})))
         })
     }, [])
     return (
-        <ItemList data={products}/>
+        <ItemList data={cookies}/>
     )
 }
 export default Home;
