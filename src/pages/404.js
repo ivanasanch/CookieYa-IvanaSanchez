@@ -1,5 +1,5 @@
 import  {Typography} from "@mui/material";
-
+//Se redirecciona a este componente cuando la direccion no existe
 const ErrorPage = () => {
     return (
         <>

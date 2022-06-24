@@ -1,11 +1,12 @@
 import * as React from "react";
 import { Typography, Card, CardContent, CardActionArea, CardMedia} from "@mui/material";
-import '../css/card.css';
+import '../css/style.css';
 import { Link } from "react-router-dom";
+//Item muestra los datos básicos en ItemList
 const Item = ({ img, title, text, price, id }) => {
   return (
     <div className="card-container">
-    <Card>
+    <Card className="card-item">
     <Link to={`/producto/${id}`} style={{ textDecoration: 'none', color:'black' }}>
       <CardActionArea>
         <CardContent>

@@ -11,7 +11,8 @@
     width: 80%;
 }
 .header-primary {
-    background: #f19444 !important;
+    background: rgb(241,148,68);
+    background: linear-gradient(90deg, rgba(241,148,68,1) 0%, rgba(252,246,207,1) 100%);
 }
 .navbar__btn {
     font-family: 'Roboto', sans-serif;

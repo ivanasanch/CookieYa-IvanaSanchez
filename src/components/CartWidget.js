@@ -4,9 +4,9 @@ import { useContext, useState } from "react";
 import { CartContext } from "../context/cartContext";
 import { Menu, MenuItem, Typography, Button, Badge } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import "../css/card.css";
+import "../css/style.css";
 import { Link } from "react-router-dom";
-
+//Widget de carrito de compras. Muestra los articulos en el carrito, pero tambien incluye los botones para vaciarlo, ir al componente cart y eliminar un item en particular
 const CartWidget = () => {
   const { cartListItems,totalCount } = useContext(CartContext);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -33,7 +33,7 @@ const CartWidget = () => {
           color="inherit"
         >
           <Badge badgeContent={totalCount} color="success" anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
-            <ShoppingCartIcon aria-haspopup="true" />
+            <ShoppingCartIcon aria-haspopup="true" color = "warning"/>
           </Badge>
         </Button><Menu
           id="basic-menu"
@@ -54,19 +54,20 @@ const CartWidget = () => {
             )}
             {cartListItems.length > 0 && (
               <div>
-              <MenuItem onClick={() => clearCart()} key="99" style={{ color: "#f19444", textTransform: "uppercase" }}>
+              <MenuItem onClick={() => clearCart()} key="99" className="btn_effect">
                 <Typography variant="body2">
                   Vaciar Carrito
                 </Typography>
               </MenuItem>
-              <MenuItem key="00"><Typography variant="body2">
-                <Link to={'/cart'} style={{ color: "#f19444", textTransform: "uppercase", textDecoration:"none" }}>Ver carrito</Link>
+              <Link to={'/cart'} className="link"><MenuItem key="00" className="btn_effect"><Typography variant="body2">
+                Ver carrito
               </Typography>
-              </MenuItem></div>
+              </MenuItem></Link>
+              </div>
             )}
             {cartListItems.map((item) => {
               return (
-                <MenuItem key={item.id} style={{ width: "20em", display: "flex", justifyContent: "space-around" }}>
+                <MenuItem key={item.id} style={{ width: "20em", display: "flex", justifyContent: "space-between" }}>
                   <div>
                     <img src={`/${item.img}`} width="50px" alt={item.title}></img>
                   </div>
@@ -75,7 +76,7 @@ const CartWidget = () => {
                     <div>{item.count} x ${item.price}</div>
                   </div>
                   <div>
-                    <Button variant="text" onClick={() => { delProducttoCart(item); } }>
+                    <Button variant="text" onClick={() => { delProducttoCart(item); }} className="btn_effect">
                       <DeleteIcon />
                     </Button>
                   </div>

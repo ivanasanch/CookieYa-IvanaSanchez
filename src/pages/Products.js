@@ -14,7 +14,7 @@ const Products =() =>{
         })
     }, [category])
     return (
-        <ItemList data={cookies}/>
+        <ItemList data={cookies} title={category}/>
     )
 }
 export default Products;

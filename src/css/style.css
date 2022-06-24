@@ -1,0 +1,46 @@
+.contenedor{
+  width: 90%;
+  margin: auto;
+}
+.swal-overlay {
+    background-color: rgba(241,148,68, 0.4);
+  }
+.swal-text, .swal-title{
+    font-family: 'Roboto', sans-serif;
+}
+.counter-div {
+  display: flex;
+  justify-content: center;
+}
+.card-list-img {
+  border-radius: 0.5em
+}
+
+.btn_effect{
+  color: rgb(241,148,68) !important;
+  text-transform: uppercase;
+}
+.btn_effect:hover{
+  background-color: #7d341e !important;
+  color: white !important;
+  
+}
+.link, .link_bc {
+  color: rgb(241,148,68) !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+}
+.link:hover {
+  color: white !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+}
+
+.card-item:hover {
+  background: rgb(241,148,68);
+background: linear-gradient(145deg, rgba(241,148,68,1) 10%, rgba(252,246,207,1) 100%);
+}
+
+.bc{
+  margin-left:10em !important;
+}

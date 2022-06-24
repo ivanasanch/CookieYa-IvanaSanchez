@@ -2,7 +2,8 @@ import ItemList from '../components/ItemList';
 import { useState, useEffect } from 'react';
 import { collection, getDocs} from 'firebase/firestore';
 import db from '../utils/firebaseConfig';
-
+import { Typography } from '@mui/material';
+//Componente home. Se visualiza al acceder al sitio. Muestra todos los artículos del sitio. Los obtiene de Firebase
 const Home =() =>{
     const [cookies, setCookies] = useState([])
     useEffect( () => {
@@ -12,7 +13,10 @@ const Home =() =>{
         })
     }, [])
     return (
+        <div className="Cards">
+        <Typography variant="h2">Productos destacados</Typography>
         <ItemList data={cookies}/>
+        </div>
     )
 }
 export default Home;

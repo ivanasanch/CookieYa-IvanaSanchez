@@ -9,7 +9,7 @@ import Contact from './pages/Contact';
 import ErrorPage from './pages/404';
 import Cart from './pages/Cart';
 import CartProvider from './context/cartContext';
-
+//Página inicial con ruteo a los distintos componentes
 function App() {
   return (
     <div className="App">

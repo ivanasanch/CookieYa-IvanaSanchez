@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom"
 import db from '../utils/firebaseConfig.js';
 import {getDoc, doc } from 'firebase/firestore';
+//Contenedor del item detallado
 const ItemDetailContainer = () => {
     const { id } = useParams()
     const navigate = useNavigate()
@@ -10,7 +11,7 @@ const ItemDetailContainer = () => {
     useEffect(()=>{
         getCookies().then((res) => {
             if (res === undefined){
-                navigate("/")
+                navigate("/error")
             } else {
                 setCookies(res)
             }

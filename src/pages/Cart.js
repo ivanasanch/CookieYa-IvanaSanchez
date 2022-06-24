@@ -2,12 +2,16 @@ import { Grid, Button, Typography, TextField } from "@mui/material";
 import { CartContext } from "../context/cartContext";
 import { useContext, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
-import db from "../utils/firebaseConfig"
-import { collection, addDoc,  } from "firebase/firestore";
+import { Link, useNavigate } from "react-router-dom";
+import db from "../utils/firebaseConfig";
+import swal from 'sweetalert';
+import "../css/style.css";
+import { collection, addDoc, updateDoc,doc } from "firebase/firestore";
+//pantalla de carrito de compras. Muestra todos los articulos en el carrito y gestiona la orden
 const Cart = () => {
   const { cartListItems, totalPrice } = useContext(CartContext);
   const { delProducttoCart } = useContext(CartContext);
+  const navigate = useNavigate()
   const { clearCart } = useContext(CartContext);
   const [formValue, setFormValue] = useState({
     name: '',
@@ -15,6 +19,7 @@ const Cart = () => {
     email: '',
     address: ''
 })
+
 const [order, setOrder] = useState({
     buyer: {},
     items: cartListItems.map( item => {
@@ -22,15 +27,33 @@ const [order, setOrder] = useState({
             id: item.id,
             title: item.title,
             price: item.price,
-            count: item.count
+            count: item.count,
+            stock: item.stock
         }
     } ),
     total: totalPrice
 })
+const newStock = (newOrder) =>{
+  newOrder.items.map(async(item)=> {
+    const cookieOrder = doc(db, "cookies",item.id);
+   await updateDoc(cookieOrder, {
+    stock: (item.stock - item.count)})
+  })
+}
+
+
 const saveData = async (newOrder) => {
   const orderFirebase = collection(db, 'orders')
   const orderDoc = await addDoc(orderFirebase, newOrder)
-  clearCart()
+  swal(
+    {
+      title:"Se ha completado la compra correctamente",
+      text:`Tu orden tiene el código: ${orderDoc.id}`,
+      icon: "success"},
+      )
+  newStock(newOrder)
+   clearCart()
+   navigate("/")
 }
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -42,31 +65,22 @@ const saveData = async (newOrder) => {
     setFormValue({...formValue, [e.target.name]: e.target.value})
 }
   return (
-    <Grid container direction="row">
-    <Grid item xs={9}>
-    <div style={{ padding: "1em" }}>
-      {cartListItems.length === 0 && (
-        <div>
-          <Button key={0}>
-            <Typography variant="button">
-              <Link
-                to="/"
-                style={{
-                  color: "#f19444",
-                  textTransform: "uppercase",
-                  textDecoration: "none",
-                }}
-              >
-                No has agregado nada al carrito. <br />
-                Empieza a comprar
-              </Link>
-            </Typography>
-          </Button>
-          <div>
-            <img src="../../img/imgCart.png" alt="ilustration cart"></img>
-          </div>
+    <div>
+    {cartListItems.length === 0 && (
+        <div style={{textAlign:"center", paddingTop:"10px"}}>
+          <Link to="/" className="link">
+              <Button key="0" className="btn_effect">
+                <Typography variant="h4">
+                  Aún no has agregado artículos.<br/>Empieza a comprar
+                </Typography>
+              </Button>
+            </Link>
         </div>
       )}
+    <Grid container direction="row">
+      
+    <Grid item md={9}>
+    <div style={{ padding: "1em" }}>
       {cartListItems.length > 0 && (
         <div>
           <header>
@@ -83,29 +97,23 @@ const saveData = async (newOrder) => {
             container
             direction="row"
             className="cartTitle"
-            key="0"
+            key="001"
             style={{ color: "#f19444", textTransform: "uppercase" }}
             mt={10}
           >
-            <Grid item xs={1} key="01">
-              <Typography variant="body2">Imagen</Typography>
-            </Grid>
-            <Grid item xs={3} key="02">
+            <Grid item md={3} key="02">
               <Typography variant="body2">Descripcion</Typography>
             </Grid>
-            <Grid item xs={3} key="03">
+            <Grid item md={3} key="03">
               <Typography variant="body2">Precio Unitario</Typography>
             </Grid>
-            <Grid item xs={3} key="04">
+            <Grid item md={3} key="04">
               <Typography variant="body2">Cantidad</Typography>
             </Grid>
-            <Grid item xs={1} key="05">
+            <Grid item md={1} key="05">
               <Typography variant="body2">Quitar</Typography>
             </Grid>
-            
           </Grid>
-
-
         </div>
       )}
       {cartListItems.map((item) => {
@@ -118,11 +126,6 @@ const saveData = async (newOrder) => {
               alignItems="center"
               key={item.id}
             >
-              <Grid item xs={1}>
-                <div>
-                  <img src={`/${item.img}`} width="50px" alt={item.title}></img>
-                </div>
-              </Grid>
               <Grid item xs={3}>
                 <div>
                   <Typography variant="body2">{item.title}</Typography>
@@ -143,6 +146,7 @@ const saveData = async (newOrder) => {
                     onClick={() => {
                       delProducttoCart(item);
                     }}
+                    className="btn_effect"
                   >
                     <DeleteIcon />
                   </Button>
@@ -155,32 +159,24 @@ const saveData = async (newOrder) => {
     </div>
     </Grid>
     {cartListItems.length > 0 && (
-    <Grid item xs={3}>
+    <Grid item md={3}>
       <Grid container direction="row" mt={15}>
       <Grid item >
             <div style={{ borderLeft:"solid 1px #f19444" }}>
               <Button
               onClick={() => clearCart()}
               key="99"
-              style={{ color: "#f19444", textTransform: "uppercase" }}
-              >
+              className="btn_effect">
               <Typography variant="body2">Vaciar Carrito</Typography>
             </Button>
-            <Button key="98">
-              <Typography variant="body2">
-                <Link
-                  to="/"
-                  style={{
-                    textDecoration: "none",
-                    color: "#f19444",
-                    textTransform: "uppercase",
-                  }}
-                >
+            <Link to="/" className="link">
+              <Button key="98" className="btn_effect">
+                <Typography variant="body2">
                   Seguir comprando
-                </Link>
-              </Typography>
-            </Button>
-            <form className="form-contact" onSubmit={handleSubmit}>
+                </Typography>
+              </Button>
+            </Link>
+            <form className="form-contact" key="form" onSubmit={handleSubmit}>
               <TextField 
                 id="outlined-basic" 
                         name="name"
@@ -190,6 +186,7 @@ const saveData = async (newOrder) => {
                         value={formValue.name}
                         margin="normal" 
                         onChange={handleChange}
+                        required
               />
               <TextField 
                         id="outlined-basic" 
@@ -200,15 +197,18 @@ const saveData = async (newOrder) => {
                         value={formValue.phone}
                         margin="normal" 
                         onChange={handleChange}
+                        required
                     />
                     <TextField 
                         id="outlined-basic" 
                         name="email"
-                        label="Mail" 
+                        type="email"
+                        label="Mail"
                         value={formValue.email}
                         variant="outlined" 
                         margin="normal" 
                         onChange={handleChange}
+                        required
                     />
                       <TextField 
                         id="outlined-basic" 
@@ -218,9 +218,10 @@ const saveData = async (newOrder) => {
                         margin="normal" 
                         value={formValue.address}
                         onChange={handleChange}
+                        required
                     />
                     <br/>
-                    <Button type="submit">Enviar</Button>
+                    <Button type="submit" variant="outlined" className="btn_effect">Completar compra</Button>
             </form>
             <Typography variant="button" component={"div"}>Total: ${totalPrice}</Typography>
             </div>
@@ -229,6 +230,7 @@ const saveData = async (newOrder) => {
       </Grid>
     </Grid>)}
     </Grid>
+    </div>
   );
 };
 export default Cart;
