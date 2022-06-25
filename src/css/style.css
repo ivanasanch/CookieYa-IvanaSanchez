@@ -25,6 +25,10 @@
   color: white !important;
   
 }
+.btn_effect:disabled{
+  background-color: aliceblue;
+  color:grey !important
+}
 .link, .link_bc {
   color: rgb(241,148,68) !important;
   text-transform: uppercase !important;

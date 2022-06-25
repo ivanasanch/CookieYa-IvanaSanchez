@@ -17,7 +17,8 @@ const Cart = () => {
     name: '',
     phone: '',
     email: '',
-    address: ''
+    address: '',
+    email2:''
 })
 
 const [order, setOrder] = useState({
@@ -63,6 +64,7 @@ const saveData = async (newOrder) => {
 
   const handleChange = (e) => {
     setFormValue({...formValue, [e.target.name]: e.target.value})
+    
 }
   return (
     <div>
@@ -199,17 +201,6 @@ const saveData = async (newOrder) => {
                         onChange={handleChange}
                         required
                     />
-                    <TextField 
-                        id="outlined-basic" 
-                        name="email"
-                        type="email"
-                        label="Mail"
-                        value={formValue.email}
-                        variant="outlined" 
-                        margin="normal" 
-                        onChange={handleChange}
-                        required
-                    />
                       <TextField 
                         id="outlined-basic" 
                         name="address"
@@ -220,8 +211,30 @@ const saveData = async (newOrder) => {
                         onChange={handleChange}
                         required
                     />
+                    <TextField 
+                        id="outlined-basic" 
+                        name="email"
+                        type="email"
+                        label="Email"
+                        value={formValue.email}
+                        variant="outlined" 
+                        margin="normal" 
+                        onChange={handleChange}
+                        required
+                    />
+                    <TextField 
+                        id="outlined-basic" 
+                        name="email2"
+                        type="email"
+                        label="Repetir email"
+                        value={formValue.email2}
+                        variant="outlined" 
+                        margin="normal" 
+                        onChange={handleChange}
+                        required
+                    />
                     <br/>
-                    <Button type="submit" variant="outlined" className="btn_effect">Completar compra</Button>
+                    <Button type="submit" variant="text" className="btn_effect" disabled={(formValue.email!== formValue.email2 || formValue.email==='' || formValue.email2==='' )}>Completar compra</Button>
             </form>
             <Typography variant="button" component={"div"}>Total: ${totalPrice}</Typography>
             </div>
